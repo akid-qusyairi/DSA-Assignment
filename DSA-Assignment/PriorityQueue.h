@@ -2,11 +2,13 @@
 #pragma once
 #include<string>
 #include<iostream>
+#include "Passenger.h"
 
-typedef char ItemType;
+typedef int ItemType;
 struct Node
 {
 	ItemType item;	// item
+	int priority;
 	Node* next;	// pointer pointing to next item
 };
 class Queue
@@ -25,13 +27,13 @@ public:
 	~Queue();
 
 	// enqueue (add) item at the back of queue
-	bool enqueue(ItemType item);
+	bool enqueue(ItemType item,int priority);
 
 	// dequeue (remove) item from front of queue
 	bool dequeue();
 
 	// dequeue (remove) and retrieve item from front of queue
-	bool dequeue(ItemType& item);
+	bool dequeue(ItemType& item, int& priority);
 
 	// retrieve (get) item from front of queue
 	void getFront(ItemType& item);

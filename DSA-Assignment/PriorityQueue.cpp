@@ -5,17 +5,29 @@ Queue::Queue() { frontNode = NULL; backNode = NULL; };
 
 Queue::~Queue() {};
 
-bool Queue::enqueue(ItemType item) {
+
+bool Queue::enqueue(ItemType item,int priority) {
 	Node* newNode = new Node;
 	newNode->item = item;
+	newNode->priority = priority;
 	newNode->next = NULL;
 	if (isEmpty()) {
 		frontNode = newNode;
 		backNode = newNode;
 	}
 	else {
-		backNode->next = newNode;
-		backNode = newNode;
+		if (priority > frontNode->priority) {
+			newNode->next = frontNode;
+			frontNode = newNode;
+		}
+		else {
+			Node* tmp = frontNode;
+			while (tmp->next != NULL && tmp->next->priority >= priority) {
+				tmp = tmp->next;
+			}
+			newNode->next = tmp->next;
+			tmp->next = newNode;
+		}
 	}
 	return true;
 };
@@ -32,13 +44,14 @@ bool Queue::dequeue() {
 	}
 	return true;
 };
-bool Queue::dequeue(ItemType& item) {
+bool Queue::dequeue(ItemType& item, int& priority) {
 	if (isEmpty()) {
 		cout << "Queue is empty." << endl;
 		return true;
 	}
 	Node* temp = frontNode;
 	item = frontNode->item;
+	priority = frontNode->priority;
 	frontNode = frontNode->next;
 	free(temp);
 	return true;
@@ -52,14 +65,16 @@ bool Queue::isEmpty() {
 };
 void Queue::displayItems() {
 	ItemType item;
+	int priority;
 	Queue q;
 	while (!isEmpty()) {
-		dequeue(item);
-		q.enqueue(item);
+		dequeue(item,priority);
+		q.enqueue(item, priority);
 	}
 	while (!q.isEmpty()) {
-		q.dequeue(item);
-		cout << item << endl;
-		enqueue(item);
+		q.dequeue(item, priority);
+		cout << item << "	";
+		enqueue(item, priority);
 	}
+	cout << endl;
 };

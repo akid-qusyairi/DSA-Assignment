@@ -51,6 +51,17 @@ void user(int opt) {
 
 int main()
 {
+	//testing queue
+
+	Queue q;
+	q.enqueue(10, 10);
+	q.enqueue(1, 1);
+	q.enqueue(15, 15);
+	q.enqueue(4, 4);
+	q.enqueue(5, 5);
+	q.enqueue(2, 2);
+	q.displayItems();
+
     int opt = 1;
 	while (opt != 0)
 	{
