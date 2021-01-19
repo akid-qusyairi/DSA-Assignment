@@ -1,7 +1,7 @@
 #include "PriorityQueue.h"
 using namespace std;
 // constructor
-Queue::Queue() { frontNode = NULL; backNode = NULL; };
+Queue::Queue() { frontNode = NULL; backNode = NULL; maxPriority = ""; };
 
 Queue::~Queue() {};
 
@@ -14,11 +14,13 @@ bool Queue::enqueue(ItemType item,int priority) {
 	if (isEmpty()) {
 		frontNode = newNode;
 		backNode = newNode;
+		maxPriority = item;
 	}
 	else {
 		if (priority > frontNode->priority) {
 			newNode->next = frontNode;
 			frontNode = newNode;
+			maxPriority = item;
 		}
 		else {
 			Node* tmp = frontNode;
@@ -58,6 +60,9 @@ bool Queue::dequeue(ItemType& item, int& priority) {
 };
 void Queue::getFront(ItemType& item) {
 	if (frontNode != NULL) { item = frontNode->item; }
+};
+void Queue::getTop(ItemType& item) {
+	item = maxPriority;
 };
 bool Queue::isEmpty() {
 	bool empty = (frontNode == NULL || backNode == NULL);

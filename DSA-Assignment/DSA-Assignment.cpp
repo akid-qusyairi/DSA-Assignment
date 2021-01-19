@@ -54,13 +54,17 @@ int main()
 	//testing queue
 
 	Queue q;
-	q.enqueue(10, 10);
-	q.enqueue(1, 1);
-	q.enqueue(15, 15);
-	q.enqueue(4, 4);
-	q.enqueue(5, 5);
-	q.enqueue(2, 2);
+	q.enqueue("Ten", 10);
+	q.enqueue("One", 1);
+	q.enqueue("Highest", 15);
+	q.enqueue("Four", 4);
+	q.enqueue("Five", 5);
+	q.enqueue("Two", 2);
 	q.displayItems();
+	cout << endl;
+	string item;
+	q.getTop(item);
+	cout << item << endl;
 
     int opt = 1;
 	while (opt != 0)

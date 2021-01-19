@@ -4,7 +4,7 @@
 #include<iostream>
 #include "Passenger.h"
 
-typedef int ItemType;
+typedef string ItemType;
 struct Node
 {
 	ItemType item;	// item
@@ -15,7 +15,7 @@ class Queue
 {
 private:
 
-
+	ItemType maxPriority;
 	Node* frontNode;	// point to the first item
 	Node* backNode;	// point to the first item
 
@@ -41,6 +41,7 @@ public:
 	// check if the queue is empty
 	bool isEmpty();
 
+	void getTop(ItemType& item);
 	// display items in queue from front to back
 	void displayItems();
 };
