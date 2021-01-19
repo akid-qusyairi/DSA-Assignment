@@ -1,12 +1,82 @@
 // pointerDemo.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-
+#include "List.h"
+#include "Customer.h"
+#include "Passenger.h"
+#include "PriorityQueue.h"
+#include "Seat.h"
 #include <iostream>
 
 using namespace std;
+void user(int opt) {
+
+
+	//Testing prints
+	List<Seat> test;
+	Seat a = Seat(1, "Business");
+	test.add(a);
+	test.print();
+	List<Customer> cList;
+	Customer c = Customer("Jax", 100, "test@gmail.com", "password");
+	cList.add(c);
+	cList.print();
+
+
+	while (opt != 0) {
+		cout << "---------------- User Menu -------------------" << endl;
+		cout << "[1] View Flights" << endl;
+		cout << "[2] Book a flight" << endl;
+		cout << "----------------------------------------------" << endl;
+		cout << "Enter your option : ";
+		cin >> opt;
+		switch (opt)
+		{
+		case 0:
+			break;
+		case 1:
+
+		case 2:
+
+		default:
+			cout << "---------------- User Menu -------------------" << endl;
+			cout << "[1] View Flights" << endl;
+			cout << "[2] Book a flight" << endl;
+			cout << "----------------------------------------------" << endl;
+			cout << "Enter your option : ";
+			cin >> opt;
+		}
+	}
+}
+
+
 int main()
 {
-	cout << "Hello world" << endl;
+    int opt = 1;
+	while (opt != 0)
+	{
+		cout << "---------------- Main Menu -------------------" << endl;
+		cout << "[1] User" << endl;
+		cout << "[2] Admin" << endl;
+		cout << "----------------------------------------------" << endl;
+		cout << "Enter your option : ";
+		cin >> opt;
+		switch (opt)
+		{
+		case 0:
+			break;
+		case 1:
+			user(-1);
+		case 2:
+
+		default:
+			cout << "---------------- Main Menu -------------------" << endl;
+			cout << "[1] User" << endl;
+			cout << "[2] Admin" << endl;
+			cout << "----------------------------------------------" << endl;
+			cout << "Enter your option : ";
+			cin >> opt;
+		}
+	}
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
