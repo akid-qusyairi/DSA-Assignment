@@ -6,12 +6,12 @@ using namespace std;
 
 Tree::Tree(){ rootNode = NULL; }    
 
-TreeNode* Tree::search(ItemType target)
+TreeNode* Tree::search(string target)
 {
     return search(rootNode, target);
 }
 
-TreeNode* Tree::search(TreeNode* start, ItemType target) {
+TreeNode* Tree::search(TreeNode* start, string target) {
     if (start == NULL)
         return NULL;
     if (start->item == target) 
@@ -22,7 +22,7 @@ TreeNode* Tree::search(TreeNode* start, ItemType target) {
         return search(start->rightSibling,target);
 }
 
-TreeNode* Tree::searchDown(TreeNode* start, ItemType target) {
+TreeNode* Tree::searchDown(TreeNode* start, string target) {
     if (start->item == target) {
         return start;
     }
@@ -33,12 +33,12 @@ TreeNode* Tree::searchDown(TreeNode* start, ItemType target) {
     }
 }
 
-void Tree::insertsibling(ItemType item)
+void Tree::insertsibling(string item)
 {
     insertsibling(rootNode, item);
 }
 
-void Tree::insertsibling(TreeNode*& t, ItemType item)
+void Tree::insertsibling(TreeNode*& t, string item)
 {
     if (t == NULL)
     {
@@ -61,12 +61,12 @@ void Tree::insertsibling(TreeNode*& t, ItemType item)
     }
 }
 
-void Tree::insertchild(ItemType item)
+void Tree::insertchild(string item)
 {
     insertchild(rootNode, item);
 }
 
-void Tree::insertchild(TreeNode*& t, ItemType item)
+void Tree::insertchild(TreeNode*& t, string item)
 {
     if (t == NULL)
     {

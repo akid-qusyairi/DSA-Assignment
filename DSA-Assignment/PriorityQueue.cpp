@@ -1,7 +1,8 @@
 #include "PriorityQueue.h"
+#include <string>
 using namespace std;
 // constructor
-Queue::Queue() { frontNode = NULL; backNode = NULL; maxPriority = ""; };
+Queue::Queue() { frontNode = NULL; backNode = NULL; maxPriority = List<Passenger>(); };
 
 Queue::~Queue() {};
 
@@ -78,7 +79,10 @@ void Queue::displayItems() {
 	}
 	while (!q.isEmpty()) {
 		q.dequeue(item, priority);
-		cout << item << "	";
+		for (int i=0; i < item.getLength(); i++) {
+			Passenger p = item.get(i);
+			cout << p.getName() << "	";
+		}
 		enqueue(item, priority);
 	}
 	cout << endl;

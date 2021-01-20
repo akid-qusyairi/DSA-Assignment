@@ -1,4 +1,2 @@
-﻿  Tree.cpp
-C:\Users\jaxch\source\repos\DSA-Assignment\DSA-Assignment\Tree.cpp(23): warning C4715: 'Tree::search': not all control paths return a value
-C:\Users\jaxch\source\repos\DSA-Assignment\DSA-Assignment\Tree.cpp(34): warning C4715: 'Tree::searchDown': not all control paths return a value
+﻿  DSA-Assignment.cpp
   DSA-Assignment.vcxproj -> C:\Users\jaxch\source\repos\DSA-Assignment\x64\Debug\DSA-Assignment.exe

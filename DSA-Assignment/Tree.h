@@ -13,16 +13,16 @@ private:
 public:
     Tree();
 
-    TreeNode* search(ItemType target);
-    TreeNode* search(TreeNode* start, ItemType target);
+    TreeNode* search(string target);
+    TreeNode* search(TreeNode* start, string target);
 
-    TreeNode* searchDown(TreeNode* start, ItemType target);
+    TreeNode* searchDown(TreeNode* start, string target);
 
-    void insertsibling(ItemType item);
-    void insertsibling(TreeNode*& t, ItemType item);
+    void insertsibling(string item);
+    void insertsibling(TreeNode*& t, string item);
 
-    void insertchild(ItemType item);
-    void insertchild(TreeNode*& t, ItemType item);
+    void insertchild(string item);
+    void insertchild(TreeNode*& t, string item);
 
     TreeNode* getTop();
     bool isEmpty();

@@ -54,28 +54,12 @@ int main()
 {
 	Tree t;
 	t.insertsibling("Singapore");
-	cout << "Success" << endl;
 	t.insertsibling("Japan");
-	cout << "Success" << endl;
 	t.insertsibling("Malaysia");
-	cout << "Success" << endl;
-
-	cout << endl;
 	TreeNode* root = t.getTop();
 	TreeNode* tree = t.search(root,"Japan");
-	cout << "Address: " << tree << " | String: " << tree->item << endl;
 	t.insertchild(tree->leftChild, "Thailand");
-	cout << endl;
 	TreeNode* temp = t.search(root, "Thailand");
-	if (temp == NULL) {
-		cout << "Empty" << endl;
-	}
-	else {
-		cout <<"Address: "<< temp <<" | String: "<<temp->item << endl;
-	}
-
-	cout << "Success" << endl;
-	cout << endl;
 	t.insertchild(root->leftChild, "USA");
 	t.insertchild(root->leftChild, "Indonesia");
 	TreeNode* bottom = t.search(root, "Indonesia");
@@ -86,14 +70,24 @@ int main()
 	//testing queue
 
 	Queue q;
-	q.enqueue("Ten", 10);
-	q.enqueue("One", 1);
-	q.enqueue("Highest", 15);
-	q.enqueue("Four", 4);
-	q.enqueue("Five", 5);
-	q.enqueue("Two", 2);
-	q.displayItems();
 	cout << endl;
+
+	List<Passenger> p1;
+	List<Passenger> p2;
+	List<Seat> seat;
+	for (int i = 0; i < 10; i++) {
+		Seat s = Seat(i + 1, "First");
+		seat.add(s);
+		cout << s.getSeatNo()<<" | "<< s.getSeatClass() << endl;
+	}
+	int len = seat.getLength();
+	for (int i = len; i < len + 10; i++) {
+		Seat s = Seat(i + 1, "Business");
+		cout << s.getSeatNo() << " | " << s.getSeatClass() << endl;
+		seat.add(s);
+	}
+
+	Passenger a = Passenger();
 
     int opt = 1;
 	while (opt != 0)
