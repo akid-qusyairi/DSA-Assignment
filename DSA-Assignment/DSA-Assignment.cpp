@@ -5,6 +5,7 @@
 #include "Passenger.h"
 #include "PriorityQueue.h"
 #include "Seat.h"
+#include "Tree.h"
 #include <iostream>
 
 using namespace std;
@@ -51,6 +52,37 @@ void user(int opt) {
 
 int main()
 {
+	Tree t;
+	t.insertsibling("Singapore");
+	cout << "Success" << endl;
+	t.insertsibling("Japan");
+	cout << "Success" << endl;
+	t.insertsibling("Malaysia");
+	cout << "Success" << endl;
+
+	cout << endl;
+	TreeNode* root = t.getTop();
+	TreeNode* tree = t.search(root,"Japan");
+	cout << "Address: " << tree << " | String: " << tree->item << endl;
+	t.insertchild(tree->leftChild, "Thailand");
+	cout << endl;
+	TreeNode* temp = t.search(root, "Thailand");
+	if (temp == NULL) {
+		cout << "Empty" << endl;
+	}
+	else {
+		cout <<"Address: "<< temp <<" | String: "<<temp->item << endl;
+	}
+
+	cout << "Success" << endl;
+	cout << endl;
+	t.insertchild(root->leftChild, "USA");
+	t.insertchild(root->leftChild, "Indonesia");
+	TreeNode* bottom = t.search(root, "Indonesia");
+	t.insertchild(bottom->leftChild, "Vietnam");
+	t.traverseTree();
+	cout << endl << endl;
+
 	//testing queue
 
 	Queue q;
@@ -62,9 +94,6 @@ int main()
 	q.enqueue("Two", 2);
 	q.displayItems();
 	cout << endl;
-	string item;
-	q.getTop(item);
-	cout << item << endl;
 
     int opt = 1;
 	while (opt != 0)

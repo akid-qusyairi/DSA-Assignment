@@ -144,6 +144,7 @@
     <ClCompile Include="Passenger.cpp" />
     <ClCompile Include="PriorityQueue.cpp" />
     <ClCompile Include="Seat.cpp" />
+    <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Customer.h" />
@@ -151,6 +152,8 @@
     <ClInclude Include="Passenger.h" />
     <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="Seat.h" />
+    <ClInclude Include="Tree.h" />
+    <ClInclude Include="TreeNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
