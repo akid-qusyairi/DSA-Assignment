@@ -16,22 +16,23 @@ TreeNode* Tree::search(TreeNode* start, string target) {
         return NULL;
     if (start->item == target) 
         return start;
-    if (start->leftChild != NULL)
-        return searchDown(start->leftChild, target);
-    if (start->rightSibling != NULL)
+    if (search(start->leftChild, target) != NULL)
+        return search(start->leftChild, target);
+    if (search(start->rightSibling, target) != NULL)
         return search(start->rightSibling,target);
+    return NULL;
 }
 
-TreeNode* Tree::searchDown(TreeNode* start, string target) {
-    if (start->item == target) {
+TreeNode* Tree::searchSibling(TreeNode* start, string target) {
+    if (start == NULL)
+        return NULL;
+    if (start->item == target)
         return start;
-    }
-    if (start->item != target) {
-        if (start->rightSibling != NULL) {
-            return search(start->rightSibling, target);
-        }
-    }
+    if (search(start->rightSibling, target) != NULL)
+        return search(start->rightSibling, target);
+    return NULL;
 }
+
 
 void Tree::insertsibling(string item)
 {
@@ -93,14 +94,22 @@ void Tree::traverseTree(TreeNode* root)
         return;
     while (root != NULL)
     {
-        cout << root->item <<"; ";
         if (root->leftChild != NULL) {
-            cout << endl << "-----------" << endl;
-            cout <<"Flights from: " <<root->item ;
-            cout << endl << "Flights to: ";
+            cout << "Origin: " << root->item << endl;
+            cout << "Destinations: ";
+            traverseRight(root->leftChild);
+            cout << endl << "----------------------------------------------" << endl;
             traverseTree(root->leftChild);
-            cout << endl <<"-----------"<< endl;
         }
         root = root->rightSibling;
+    }
+}
+
+void Tree::traverseRight(TreeNode* root) {
+    if (root == NULL)
+        return;
+    else{
+        cout << root->item << "; ";
+        traverseRight(root->rightSibling);
     }
 }

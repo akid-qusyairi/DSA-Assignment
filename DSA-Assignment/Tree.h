@@ -16,7 +16,7 @@ public:
     TreeNode* search(string target);
     TreeNode* search(TreeNode* start, string target);
 
-    TreeNode* searchDown(TreeNode* start, string target);
+    TreeNode* searchSibling(TreeNode* start, string target);
 
     void insertsibling(string item);
     void insertsibling(TreeNode*& t, string item);
@@ -28,5 +28,6 @@ public:
     bool isEmpty();
     void traverseTree();
     void traverseTree(TreeNode* root);
+    void traverseRight(TreeNode* root);
 };
 

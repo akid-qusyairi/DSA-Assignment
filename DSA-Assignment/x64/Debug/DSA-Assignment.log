@@ -1,2 +1,5 @@
 ﻿  DSA-Assignment.cpp
+  Tree.cpp
+  Generating Code...
+C:\Users\jaxch\source\repos\DSA-Assignment\DSA-Assignment\List.h(110): warning C4715: 'List<Seat>::get': not all control paths return a value
   DSA-Assignment.vcxproj -> C:\Users\jaxch\source\repos\DSA-Assignment\x64\Debug\DSA-Assignment.exe

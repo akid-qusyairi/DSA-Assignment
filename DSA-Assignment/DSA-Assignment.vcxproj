@@ -139,15 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Booking.cpp" />
     <ClCompile Include="DSA-Assignment.cpp" />
-    <ClCompile Include="Customer.cpp" />
     <ClCompile Include="Passenger.cpp" />
     <ClCompile Include="PriorityQueue.cpp" />
     <ClCompile Include="Seat.cpp" />
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Customer.h" />
+    <ClInclude Include="Booking.h" />
+    <ClInclude Include="Flight.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Passenger.h" />
     <ClInclude Include="PriorityQueue.h" />

@@ -2,17 +2,34 @@
 // Passenger.h - Definition of Passenger class
 
 #include<string>
-#include "Customer.h"
 #include "Seat.h"
 #include<iostream>
 using namespace std;
 
-class Passenger : public Customer
+class Passenger
 {
 private:
+	string name;
+	int age;
 	int priority;
 	Seat seat;
 public:
+	Passenger() {}
+
+	Passenger(string Name, int Age, int Priority, Seat Seat)
+	{
+		name = Name;
+		age = Age;
+		priority = Priority;
+		seat = Seat;
+	}
+
+	void setName(string n) { name = n; }
+	string getName() { return name; }
+
+	void setAge(int a) { age = a; }
+	int getAge() { return age; }
+
 	void setPriority(int p) {
 		priority = p;
 	}
@@ -24,5 +41,11 @@ public:
 	}
 	Seat getSeat() {
 		return seat;
+	}
+	void print() {
+		cout << "Name: " << getName() << endl;
+		cout << "Age: " << getAge() << endl;
+		getSeat().print();
+		cout << "================" << endl;
 	}
 };
