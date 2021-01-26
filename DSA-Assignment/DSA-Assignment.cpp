@@ -8,6 +8,8 @@
 #include "Tree.h"
 #include <iostream>
 #include "Flight.h"
+#include "Stack.h"
+#include "Customer.h"
 
 using namespace std;
 void user(int opt, List<Flight>& fList) {
@@ -21,7 +23,7 @@ void user(int opt, List<Flight>& fList) {
 	List<Passenger> pList;
 	Passenger p1 = Passenger("Jax", 19, 3, a);
 	pList.add(p1);
-	Booking b = Booking("Jax", "jaxchua@ymail.com", pList);
+	Booking b = Booking("Singapore","Malaysia","Jax", "jaxchua@ymail.com", pList);
 
 
 	while (opt != 0) {
@@ -214,7 +216,17 @@ int main()
 	tList.insertchild(bottom->leftChild, "Vietnam");
 
 	List<Flight> fList;
-
+	Customer Jax = Customer("Jax", "test@gmail.com", "password", "9999 9999");
+	Seat a = Seat(1, "Business", 600, true);
+	List<Booking> bList;
+	List<Passenger> pList;
+	Passenger p1 = Passenger("Jax", 19, 3, a);
+	pList.add(p1);
+	Booking b = Booking("Singapore", "Malaysia", "Jax", "test@gmail.com", pList);
+	Stack s = Jax.getStack();
+	s.push(b);
+	Jax.setStack(s);
+	s.displayInOrder();
     int opt = 1;
 	while (opt != 0)
 	{

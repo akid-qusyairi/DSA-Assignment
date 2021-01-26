@@ -4,6 +4,8 @@
 class Booking
 {
 private:
+	string origin;
+	string destination;
 	string name;
 	string email;
 	List<Passenger> pList;
@@ -11,7 +13,9 @@ private:
 public:
 	Booking() {}
 
-	Booking(string Name, string Email, List<Passenger> P) {
+	Booking(string Origin,string Dest,string Name, string Email, List<Passenger> P) {
+		origin = Origin;
+		destination = Dest;
 		name = Name;
 		email = Email;
 		pList = P;
@@ -22,6 +26,12 @@ public:
 
 	void setEmail(string e) { email = e; }
 	string getEmail() { return email; }
+
+	void setOrigin(string o) { origin = o; }
+	string getOrigin() { return origin; }
+
+	void setDestination(string d) { destination = d; }
+	string getDestination() { return destination; }
 
 	void setList(List<Passenger> p) {
 		pList = p;
@@ -38,6 +48,10 @@ public:
 		cout << "Total Price: " << totalPrice << endl;
 		cout << "-----Passengers-----" << endl;
 		pList.print();
+	}
+
+	void preview() {
+		cout << "Origin: " << origin << " | Destination: " << destination << " | Total Seats: " << pList.getLength() << endl;
 	}
 };
 
