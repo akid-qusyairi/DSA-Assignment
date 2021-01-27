@@ -8,23 +8,12 @@
 #include <iostream>
 
 using namespace std;
+
 void user(int opt) {
-
-
-	//Testing prints
-	List<Seat> test;
-	Seat a = Seat(1, "Business");
-	test.add(a);
-	test.print();
-	List<Customer> cList;
-	Customer c = Customer("Jax", 100, "test@gmail.com", "password");
-	cList.add(c);
-	cList.print();
-
 
 	while (opt != 0) {
 		cout << "---------------- User Menu -------------------" << endl;
-		cout << "[1] View Flights" << endl;
+		cout << "[1] Login" << endl;
 		cout << "[2] Book a flight" << endl;
 		cout << "----------------------------------------------" << endl;
 		cout << "Enter your option : ";
@@ -34,7 +23,7 @@ void user(int opt) {
 		case 0:
 			break;
 		case 1:
-
+			Login();
 		case 2:
 
 		default:
@@ -51,46 +40,41 @@ void user(int opt) {
 
 int main()
 {
-	//testing queue
+	//priority queue
 
-	Queue q;
-	q.enqueue("Ten", 10);
-	q.enqueue("One", 1);
-	q.enqueue("Highest", 15);
-	q.enqueue("Four", 4);
-	q.enqueue("Five", 5);
-	q.enqueue("Two", 2);
-	q.displayItems();
-	cout << endl;
-	string item;
-	q.getTop(item);
-	cout << item << endl;
+	
+}
 
-    int opt = 1;
-	while (opt != 0)
+
+void Login()
+{
+	int option;
+	cout << "---------------- User Menu -------------------" << endl;
+	cout << "[1] Create Account" << endl;
+	cout << "[2] Existing Account" << endl;
+	cin >> option;
+	switch (option)
 	{
-		cout << "---------------- Main Menu -------------------" << endl;
-		cout << "[1] User" << endl;
-		cout << "[2] Admin" << endl;
-		cout << "----------------------------------------------" << endl;
-		cout << "Enter your option : ";
-		cin >> opt;
-		switch (opt)
-		{
-		case 0:
-			break;
-		case 1:
-			user(-1);
-		case 2:
+	case 0:
+		break;
+	case 1:
+		string name;
+		int age;
+		string email;
+		string password;
+		cout << "---------------- Create Account -------------------" << endl;
+		cout << "Enter Name: " << endl;
+		cin >> name;
+		cout << "Enter Age: " << endl;
+		cin >> age;
+		cout << "Enter Email: " << endl;
+		cin >> email;
+		cout << "Enter Password: " << endl;
+		cin >> password;
+		Customer c(name, age, email, password);
 
-		default:
-			cout << "---------------- Main Menu -------------------" << endl;
-			cout << "[1] User" << endl;
-			cout << "[2] Admin" << endl;
-			cout << "----------------------------------------------" << endl;
-			cout << "Enter your option : ";
-			cin >> opt;
-		}
+	case 2:
+
 	}
 }
 
