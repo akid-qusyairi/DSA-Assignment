@@ -20,7 +20,7 @@ private:
 
 public:
 	// constructor
-	List() { size = 0; };
+	List() { size = 0; }
 
 
 	// add an item to the back of the list (append)
@@ -101,7 +101,7 @@ public:
 	T get(int index) {
 		Node* tmp = firstNode;
 		if (index <= size && index >= 0) {
-			for (int i = 0; i <= index; i++)
+			for (int i = 0; i < index; i++)
 			{
 				tmp = tmp->next;
 			}
@@ -119,12 +119,12 @@ public:
 	void print() {
 		Node* tmp = firstNode;
 		T item;
-		while (tmp->next != NULL) {
+		for (int i = 0; i < size; i++) {
+			cout << "----------------------------------------------" << endl;
+			cout << "[Option " << i + 1 << "]" << endl;
 			item = tmp->item;
 			item.print();
 			tmp = tmp->next;
 		}
-		item = tmp->item;
-		item.print();
 	}
 };

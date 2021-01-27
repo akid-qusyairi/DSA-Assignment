@@ -2,9 +2,10 @@
 #pragma once
 #include<string>
 #include<iostream>
+#include "List.h"
 #include "Passenger.h"
 
-typedef string ItemType;
+typedef List<Passenger> ItemType;
 struct Node
 {
 	ItemType item;	// item

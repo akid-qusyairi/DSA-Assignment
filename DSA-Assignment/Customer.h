@@ -1,33 +1,38 @@
 #pragma once
-// Customer.h - Definition of Customer class
-
-#include<string>
-#include<iostream>
+#include <string>
+#include <iostream>
+#include "Stack.h"
 using namespace std;
 
 class Customer
 {
 private:
 	string name;
-	int age; // the i-th minute Customer joins queue.
 	string email;
 	string password;
-
+	string phoneNo;
+	Stack bookingList;
 public:
-	Customer();
-	Customer(string n, int a, string e, string p);
+	Customer() {}
 
-	void setName(string n);
-	string getName();
+	Customer(string n, string e, string p, string pN) {
+		name = n;
+		email = e;
+		password = p;
+		phoneNo = pN;
+	}
+	void setName(string n) { name = n; }
+	string getName() { return name; }
 
-	void setAge(int a);
-	int getAge();
+	void setEmail(string e) { email = e; }
+	string getEmail() { return email; }
 
-	void setEmail(string e);
-	string getEmail();
+	void setPass(string p) { password = p; }
+	string getPass() { return password; }
 
-	void setPassword(string p);
-	string getPassword();
+	void setPhone(string pN) { phoneNo = pN; }
+	string getPhone() { return phoneNo; }
 
-	void print();
+	void setStack(Stack S) { bookingList = S; }
+	Stack getStack() { return bookingList; }
 };

@@ -139,18 +139,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Booking.cpp" />
     <ClCompile Include="DSA-Assignment.cpp" />
-    <ClCompile Include="Customer.cpp" />
     <ClCompile Include="Passenger.cpp" />
     <ClCompile Include="PriorityQueue.cpp" />
     <ClCompile Include="Seat.cpp" />
+    <ClCompile Include="Stack.cpp" />
+    <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Booking.h" />
     <ClInclude Include="Customer.h" />
+    <ClInclude Include="Flight.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Passenger.h" />
     <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="Seat.h" />
+    <ClInclude Include="Stack.h" />
+    <ClInclude Include="Tree.h" />
+    <ClInclude Include="TreeNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
