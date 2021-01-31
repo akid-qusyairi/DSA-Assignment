@@ -15,16 +15,6 @@ using namespace std;
 void user(int opt) {
 
 
-	//Testing prints
-	List<Seat> test;
-	Seat a = Seat(1, "Business");
-	test.add(a);
-	test.print();
-	List<Customer> cList;
-	Customer c = Customer("Jax", 100, "test@gmail.com", "password");
-	cList.add(c);
-	cList.print();
-
 
 	while (opt != 0) {
 		cout << "---------------- User Menu -------------------" << endl;
@@ -43,7 +33,7 @@ void user(int opt) {
 			break;
 		default:
 			cout << "---------------- User Menu -------------------" << endl;
-			cout << "[1] View Flights" << endl;
+			cout << "[1] Login" << endl;
 			cout << "[2] Book a flight" << endl;
 			cout << "----------------------------------------------" << endl;
 			cout << "Enter your option : ";
@@ -201,20 +191,20 @@ void admin(int opt, Tree t, List<Flight>& fList) {
 
 int main()
 {
-	//testing queue
+	Tree tList;
+	tList.insertsibling("Singapore");
+	TreeNode* root = tList.getTop();
+	tList.insertchild(root->leftChild, "Japan");
+	tList.insertchild(root->leftChild, "Malaysia");
+	TreeNode* tree = tList.search(root, "Japan");
+	tList.insertchild(tree->leftChild, "Thailand");
+	TreeNode* temp = tList.search(root, "Thailand");
+	tList.insertchild(root->leftChild, "USA");
+	tList.insertchild(root->leftChild, "Indonesia");
+	TreeNode* bottom = tList.search(root, "Indonesia");
+	tList.insertchild(bottom->leftChild, "Vietnam");
 
-	Queue q;
-	q.enqueue("Ten", 10);
-	q.enqueue("One", 1);
-	q.enqueue("Highest", 15);
-	q.enqueue("Four", 4);
-	q.enqueue("Five", 5);
-	q.enqueue("Two", 2);
-	q.displayItems();
-	cout << endl;
-	string item;
-	q.getTop(item);
-	cout << item << endl;
+	List<Flight> fList;
 
     int opt = 1;
 	while (opt != 0)
@@ -231,8 +221,9 @@ int main()
 			break;
 		case 1:
 			user(-1);
+			break;
 		case 2:
-
+			admin(-1, tList, fList);
 		default:
 			cout << "---------------- Main Menu -------------------" << endl;
 			cout << "[1] User" << endl;

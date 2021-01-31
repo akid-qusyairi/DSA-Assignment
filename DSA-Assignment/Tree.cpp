@@ -50,15 +50,7 @@ void Tree::insertsibling(TreeNode*& t, string item)
         t = newNode;
     }
     else {
-        TreeNode* tmp = t;
-        while (tmp->rightSibling != NULL) {
-            tmp = tmp->rightSibling;
-        }
-        TreeNode* newNode = new TreeNode;
-        newNode->item = item;
-        newNode->leftChild = NULL;
-        newNode->rightSibling = NULL;
-        tmp->rightSibling = newNode;
+        insertsibling(t->rightSibling, item);
     }
 }
 
