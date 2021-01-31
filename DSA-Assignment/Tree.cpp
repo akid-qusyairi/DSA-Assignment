@@ -73,6 +73,21 @@ void Tree::insertchild(TreeNode*& t, string item)
         insertsibling(t->rightSibling, item); 	// insert in right subtree
 }
 
+
+
+TreeNode* Tree::deleteNode(TreeNode*& child)
+{
+    TreeNode* newNode = NULL;
+    if (child != NULL) {
+        while (child->leftChild != NULL) {
+            child->leftChild = deleteNode(child->leftChild);
+        }
+        newNode = child->rightSibling;
+        free(child);
+    }
+    return newNode;
+}
+
 TreeNode* Tree::getTop() { return rootNode; }
 bool Tree::isEmpty() { return rootNode == NULL; }
 

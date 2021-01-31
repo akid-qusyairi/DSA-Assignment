@@ -108,7 +108,16 @@ public:
 			return tmp->item;
 		}
 	}
-
+	void updateItem(int index, T item) {
+		Node* tmp = firstNode;
+		if (index <= size && index >= 0) {
+			for (int i = 0; i < index; i++)
+			{
+				tmp = tmp->next;
+			}
+			tmp->item = item;
+		}
+	}
 	// check if the list is empty
 	bool isEmpty() { return size == 0; }
 

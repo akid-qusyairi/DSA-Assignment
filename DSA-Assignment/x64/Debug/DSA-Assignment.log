@@ -1,3 +1,3 @@
 ﻿  DSA-Assignment.cpp
-C:\Users\jaxch\source\repos\DSA-Assignment\DSA-Assignment\List.h(110): warning C4715: 'List<Seat>::get': not all control paths return a value
-  DSA-Assignment.vcxproj -> C:\Users\jaxch\source\repos\DSA-Assignment\x64\Debug\DSA-Assignment.exe
+C:\Users\jaxch\source\repos\DSA-Assignment\DSA-Assignment\DSA-Assignment.cpp(134,14): error C2065: 'booking': undeclared identifier
+C:\Users\jaxch\source\repos\DSA-Assignment\DSA-Assignment\DSA-Assignment.cpp(134,24): error C2059: syntax error: ')'

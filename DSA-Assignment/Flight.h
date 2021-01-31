@@ -9,16 +9,18 @@ class Flight
 private:
 	string origin;
 	string dest;
-	Queue<Booking> bList;
+	string status;
+	Queue bList;
 	List<Seat> sList;
 public:
 	Flight() {}
 
-	Flight(string O, string D, List<Booking> b, List<Seat> s) {
+	Flight(string O, string D, Queue b, List<Seat> s, string Status) {
 		origin = O;
 		dest = D;
 		bList = b;
 		sList = s;
+		status = Status;
 	}
 
 	void setOrigin(string O) { origin = O; }
@@ -26,6 +28,15 @@ public:
 
 	void setDest(string O) { origin = O; }
 	string getDest() { return origin; }
+
+	void setStatus(string s) { status = s; }
+	string getStatus() { return status; }
+	
+	void setQueue(Queue b) { bList = b; }
+	Queue getQueue() { return bList; }
+
+	void setSList(List<Seat> s) { sList = s; }
+	List<Seat> getSList() { return sList; }
 
 	void preview() {
 		cout << "---------------------Seats---------------------" << endl;
@@ -60,7 +71,7 @@ public:
 	}
 
 	void print() {
-		cout << "Origin: " << origin << " | Destination: " << dest << endl;
+		cout << "Origin: " << origin << " | Destination: " << dest << " | Status: " << status << endl;
 		double Fp, Bp, Ep;
 		int size = sList.getLength();
 		for (int i = 0; i < sList.getLength(); i++) {

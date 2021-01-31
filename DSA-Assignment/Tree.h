@@ -24,6 +24,8 @@ public:
     void insertchild(string item);
     void insertchild(TreeNode*& t, string item);
 
+    TreeNode* deleteNode(TreeNode*& child);
+
     TreeNode* getTop();
     bool isEmpty();
     void traverseTree();

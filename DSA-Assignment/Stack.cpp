@@ -52,11 +52,16 @@ void Stack::getTop(ItemType& item) {
 
 void Stack::displayInOrder() {
 	ItemType item;
+	Stack s;
 	if (!isEmpty()) {
 		while (!isEmpty()) {
-			getTop(item);
+			pop(item);
+			s.push(item);
 			item.preview();
-			pop();
+		}
+		while (!s.isEmpty()) {
+			s.pop(item);
+			push(item);
 		}
 	}
 }
