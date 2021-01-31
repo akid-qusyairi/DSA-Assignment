@@ -3,12 +3,13 @@
 #include "List.h"
 #include <time.h>
 #include "Seat.h"
+#include "PriorityQueue.h"
 class Flight
 {
 private:
 	string origin;
 	string dest;
-	List<Booking> bList;
+	Queue<Booking> bList;
 	List<Seat> sList;
 public:
 	Flight() {}
