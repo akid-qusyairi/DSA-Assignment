@@ -217,9 +217,9 @@ void guestMenu(int opt, List<Flight> flightList, List<Passenger> pList) {
 	int age;
 	int highestPrio = 0;
 	cout << "----------------- Guest Details --------------------" << endl;
-	cout << "Enter Name : " << endl;
+	cout << "Enter Name : ";
 	cin >> gName;
-	cout << "Enter Email : " << endl;
+	cout << "Enter Email : ";
 	cin >> email;
 	cout << "----------------- Flight List --------------------" << endl;
 	for (int i = 0; i < flightList.getLength(); i++) {
