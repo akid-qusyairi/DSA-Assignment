@@ -28,7 +28,7 @@ int logIn(List<Customer> cList) {
 	}
 	return -1;
 }
-void custMenu(int opt, List<Flight> flightList, int custIndex, List<Customer> cList) {
+void custMenu(int opt, List<Flight> flightList, int custIndex, List<Customer> cList, List<Passenger> pList) {
 	while (opt != 0)
 	{
 		cout << "---------------- Customer Menu ---------------" << endl;
@@ -53,10 +53,11 @@ void custMenu(int opt, List<Flight> flightList, int custIndex, List<Customer> cL
 			string sClass;
 			int sNo;
 			string name;
-			int i;
+			int option;
 			int passengers;
 			int priority;
 			int age;
+			int highestPrio = 0;
 			cout << "----------------- Flight List --------------------" << endl;
 			List<Flight> bookingFlights;
 			int fOptions = 1;
@@ -72,8 +73,8 @@ void custMenu(int opt, List<Flight> flightList, int custIndex, List<Customer> cL
 			}
 			cout << "----------------- Book Flight --------------------" << endl;
 			cout << "Enter Flight Option : ";
-			cin >> i;
-			Flight chosen = bookingFlights.get(i - 1);
+			cin >> option;
+			Flight chosen = bookingFlights.get(option - 1);
 			cout << "---------------- Flight Chosen -------------------" << endl;
 			chosen.print();
 			cout << "--------------- Available Seats ------------------" << endl;
@@ -107,6 +108,15 @@ void custMenu(int opt, List<Flight> flightList, int custIndex, List<Customer> cL
 					s.setTaken(true);
 					sList.updateItem(sNo - 1, s);
 					Passenger p(name, age, priority,s);
+					pList.add(p);
+					if (highestPrio < priority)
+					{
+						highestPrio = priority;
+					}
+					else
+					{
+						break;
+					}
 				}
 			}
 			else if (sClass == "Business")
@@ -117,6 +127,28 @@ void custMenu(int opt, List<Flight> flightList, int custIndex, List<Customer> cL
 					cout << "Enter Seat No. : ";
 					cin >> sNo;
 					cout << "Enter Age : ";
+					if (age < 12 || age > 65)
+					{
+						priority += 2;
+					}
+					else
+					{
+						priority += 1;
+					}
+
+					Seat s = sList.get(sNo - 1);
+					s.setTaken(true);
+					sList.updateItem(sNo - 1, s);
+					Passenger p(name, age, priority, s);
+					pList.add(p);
+					if (highestPrio < priority)
+					{
+						highestPrio = priority;
+					}
+					else
+					{
+						break;
+					}
 				}
 			}
 			else
@@ -127,11 +159,38 @@ void custMenu(int opt, List<Flight> flightList, int custIndex, List<Customer> cL
 					cout << "Enter Seat No. : ";
 					cin >> sNo;
 					cout << "Enter Age : ";
+					if (age < 12 || age > 65)
+					{
+						priority += 2;
+					}
+					else
+					{
+						priority += 1;
+					}
+
+					Seat s = sList.get(sNo - 1);
+					s.setTaken(true);
+					sList.updateItem(sNo - 1, s);
+					Passenger p(name, age, priority, s);
+					pList.add(p);
+					if (highestPrio < priority)
+					{
+						highestPrio = priority;
+					}
+					else
+					{
+						break;
+					}
 				}
 			}
+			Booking b(chosen.getOrigin(), chosen.getDest(), cList.get(custIndex).getName(), cList.get(custIndex).getEmail(), pList);
+			Queue q = chosen.getQueue();
+			q.enqueue(b, highestPrio);
+			chosen.setQueue(q);
+			flightList.updateItem(option - 1, chosen);
 			Customer c = cList.get(custIndex);
 			Stack s = c.getStack();
-			s.push(***booking***);
+			s.push(b);
 			c.setStack(s);
 			cList.updateItem(custIndex, c);
 		}
@@ -146,10 +205,151 @@ void custMenu(int opt, List<Flight> flightList, int custIndex, List<Customer> cL
 		}
 	}
 }
-void guestMenu(int opt, List<Flight> flightList) {
+void guestMenu(int opt, List<Flight> flightList, List<Passenger> pList) {
+	string sClass;
+	int sNo;
+	string name;
+	string gName;
+	string email;
+	int option;
+	int passengers;
+	int priority;
+	int age;
+	int highestPrio = 0;
+	cout << "----------------- Guest Details --------------------" << endl;
+	cout << "Enter Name : " << endl;
+	cin >> gName;
+	cout << "Enter Email : " << endl;
+	cin >> email;
+	cout << "----------------- Flight List --------------------" << endl;
+	for (int i = 0; i < flightList.getLength(); i++) {
+		Flight f = flightList.get(i);
+		if (f.getStatus() == "Scheduled") {
+			cout << "----------------------------------------------" << endl;
+			cout << "[Option " << i+1 << "]" << endl;
+			f.print();
+		}
+	}
+	cout << "----------------- Book Flight --------------------" << endl;
+	cout << "Enter Flight Option : ";
+	cin >> option;
+	Flight chosen = flightList.get(option - 1);
+	cout << "---------------- Flight Chosen -------------------" << endl;
+	chosen.print();
+	cout << "--------------- Available Seats ------------------" << endl;
+	chosen.preview();
+	cout << "Enter Number of Passengers : ";
+	cin >> passengers;
+	cout << "Enter Seat Class (First, Business, Economy) : ";
+	cin >> sClass;
+	List<Seat> sList = chosen.getSList();
+	if (sClass == "First")
+	{
+		priority = 4;
+		for (int x = 1; passengers; x++)
+		{
+			cout << "enter Name : ";
+			cin >> name;
+			cout << "Enter Seat No. : ";
+			cin >> sNo;
+			cout << "Enter Age : ";
+			cin >> age;
+			if (age < 12 || age > 65)
+			{
+				priority += 2;
+			}
+			else
+			{
+				priority += 1;
+			}
+
+			Seat s = sList.get(sNo - 1);
+			s.setTaken(true);
+			sList.updateItem(sNo - 1, s);
+			Passenger p(name, age, priority, s);
+			pList.add(p);
+			if (highestPrio < priority)
+			{
+				highestPrio = priority;
+			}
+			else
+			{
+				break;
+			}
+		}
+	}
+	else if (sClass == "Business")
+	{
+		priority = 2;
+		for (int x = 1; passengers; x++)
+		{
+			cout << "Enter Seat No. : ";
+			cin >> sNo;
+			cout << "Enter Age : ";
+			if (age < 12 || age > 65)
+			{
+				priority += 2;
+			}
+			else
+			{
+				priority += 1;
+			}
+
+			Seat s = sList.get(sNo - 1);
+			s.setTaken(true);
+			sList.updateItem(sNo - 1, s);
+			Passenger p(name, age, priority, s);
+			pList.add(p);
+			if (highestPrio < priority)
+			{
+				highestPrio = priority;
+			}
+			else
+			{
+				break;
+			}
+		}
+	}
+	else
+	{
+		priority = 0;
+		for (int x = 1; passengers; x++)
+		{
+			cout << "Enter Seat No. : ";
+			cin >> sNo;
+			cout << "Enter Age : ";
+			if (age < 12 || age > 65)
+			{
+				priority += 2;
+			}
+			else
+			{
+				priority += 1;
+			}
+
+			Seat s = sList.get(sNo - 1);
+			s.setTaken(true);
+			sList.updateItem(sNo - 1, s);
+			Passenger p(name, age, priority, s);
+			pList.add(p);
+			if (highestPrio < priority)
+			{
+				highestPrio = priority;
+			}
+			else
+			{
+				break;
+			}
+		}
+	}
+	Booking b(chosen.getOrigin(), chosen.getDest(), name, email, pList);
+	Queue q = chosen.getQueue();
+	q.enqueue(b, highestPrio);
+	chosen.setQueue(q);
+	flightList.updateItem(option - 1, chosen);
 
 }
-void user(int opt, List<Customer> customerList, List<Flight> flightList)
+void user(int opt, List<Customer> customerList, List<Flight> flightList, List<Passenger> pList)
 {
 	while (opt != 0) {
 		cout << "---------------- User Menu -------------------" << endl;
@@ -166,7 +366,7 @@ void user(int opt, List<Customer> customerList, List<Flight> flightList)
 			break;
 		case 1: {
 			int index = logIn(customerList);
-			custMenu(-1, flightList, index, customerList);
+			custMenu(-1, flightList, index, customerList, pList);
 			break;
 		}
 		case 2: {
@@ -174,7 +374,7 @@ void user(int opt, List<Customer> customerList, List<Flight> flightList)
 			string email;
 			string phoneno;
 			string password;
-			cout << "---------------- Create Account ------------------" << endl;
+			cout << "---------------- Register ------------------" << endl;
 			cout << "Enter Name : ";
 			cin >> name;
 			cout << "Enter Email : ";
@@ -197,206 +397,20 @@ void user(int opt, List<Customer> customerList, List<Flight> flightList)
 					Customer c(name, email, phoneno, password);
 					customerList.add(c);
 					cout << "Account created successfully" << endl;
-					custMenu(-1, flightList, customerList.getLength()-1,customerList);
+					custMenu(-1, flightList, customerList.getLength()-1, customerList, pList);
 				}
 			}
 			break;
 			
 		}
 		case 3: {
-			guestMenu(-1, flightList);
+			guestMenu(-1, flightList, pList);
 			break;
 		}
 		}
 	}
-	
 }
-//		int option;
-//		cout << "---------------- Flight Menu -------------------" << endl;
-//		cout << "[1] Login" << endl;
-//		cout << "[2] Book flight" << endl;
-//		cout << "--------------------------------------------------" << endl;
-//		cout << "Enter your option : ";
-//		cin >> option;
-//		switch (option)
-//		{
-//		case 0:
-//			break;
-//		case 1:
-//			int opt1;
-//			cout << "---------------- Log In -------------------" << endl;
-//			cout << "[1] Create Account" << endl;
-//			cout << "[2] Existing Account" << endl;
-//			cout << "-------------------------------------------" << endl;
-//			cout << "Enter your option : ";
-//			cin >> opt1;
-//			switch (opt1)
-//			{
-//			case 0:
-//				break;
-//			case 1:
-//			{
-//				string name;
-//				string email;
-//				string phoneno;
-//				string password;
-//				cout << "---------------- Create Account ------------------" << endl;
-//				cout << "Enter Name : ";
-//				cin >> name;
-//				cout << "Enter Email : ";
-//				cin >> email;
-//				cout << "Enter Phone No. : ";
-//				cin >> phoneno;
-//				cout << "Enter Password : ";
-//				cout << "--------------------------------------------------" << endl;
-//				cin >> password;
-//				for (int x = 0; x < customerList.getLength(); x++)
-//				{
-//					Customer v = customerList.get(x);
-//					if (v.getEmail() == email)
-//					{
-//						cout << "An account already exist under this email." << endl;
-//						break;
-//					}
-//					else
-//					{
-//						Customer c(name, email, phoneno, password);
-//						customerList.add(c);
-//						cout << "Account created successfully" << endl;
-//						bookFlight(flightList);
-//					}
-//				}
-//
-//			}
-//			case 2:
-//				string email;
-//				string password;
-//				int opt3 = 1;
-//				while (opt != 0)
-//				{
-//					cout << "---------------- Existing Account -------------------" << endl;
-//					cout << "Enter Email : ";
-//					cin >> email;
-//					cout << "Enter Password : ";
-//					cin >> password;
-//					for (int x = 0; x < customerList.getLength(); x++)
-//					{
-//						Customer c = customerList.get(x);
-//						if (c.getEmail() == email)
-//						{
-//							if (c.getPass() == password)
-//							{
-//								cout << "Account successfully Logged In" << endl;
-//							}
-//							else
-//							{
-//								cout << "Wrong Password" << endl;
-//							}
-//							break;
-//						}
-//						else
-//						{
-//							cout << "Account does not exist" << endl;
-//						}
-//						break;
-//					}
-//					cout << "Press '0' to exit : ";
-//					cin >> opt3;
-//				}
-//
-//			}
-//
-//		}
-//
-//	}
-//		default:
-//			cout << "---------------- User Menu -------------------" << endl;
-//			cout << "[1] Login" << endl;
-//			cout << "[2] Book a flight" << endl;
-//			cout << "----------------------------------------------" << endl;
-//			cout << "Enter your option : ";
-//			cin >> opt;
-//			break;
-//}
-//void bookFlight(List<Flight>flightList, List<Passenger>passengerList)
-//{
-//	string sClass;
-//	string sNo;
-//	string name;
-//	int i;
-//	int passengers;
-//	int priority;
-//	int age;
-//	cout << "----------------- Flight List --------------------" << endl;
-//  List<Flight> bookingFlights;
-//  int fOptions = 1;
-//	for (int i = 0; i < flightList.getLength(); i++) {
-//		Flight f = flightList.get(i);
-//		if (f.getStatus() == "Scheduled") {
-//			cout << "----------------------------------------------" << endl;
-//			cout << "[Option " << fOptions << "]" << endl;
-//			f.print();
-//			bookingFlights.add(f);
-//			fOptions++;
-//		}
-//	}
-//	cout << "----------------- Book Flight --------------------" << endl;
-//	cout << "Enter Flight Option : ";
-//	cin >> i;
-//	Flight chosen = bookingFlights.get(i - 1);
-//	cout << "---------------- Flight Chosen -------------------" << endl;
-//	chosen.print();
-//	cout << "--------------- Available Seats ------------------" << endl;
-//	chosen.preview();
-//	cout << "Enter Number of Passengers : ";
-//	cin >> passengers;
-//	cout << "Enter Seat Class (First, Business, Economy) : ";
-//	cin >> sClass;
-//	if (sClass == "First")
-//	{
-//		priority = 4;
-//		for (int x = 1; passengers; x++)
-//		{
-//			cout << "enter Name : ";
-//			cin >> name;
-//			cout << "Enter Seat No. : ";
-//			cin >> sNo;
-//			cout << "Enter Age : ";
-//			cin >> age;
-//			if (age < 12 || age > 65)
-//			{
-//				priority += 2;
-//			}
-//			else
-//			{
-//				priority += 1;
-//			}
-//			Passenger p(name, age, priority, s)
-//		}
-//	}
-//	else if (sClass == "Business")
-//	{
-//		priority = 2;
-//		for (int x = 1; passengers; x++)
-//		{
-//			cout << "Enter Seat No. : ";
-//			cin >> sNo;
-//			cout << "Enter Age : ";
-//		}
-//	}
-//	else
-//	{
-//		priority = 0;
-//		for (int x = 1; passengers; x++)
-//		{
-//			cout << "Enter Seat No. : ";
-//			cin >> sNo;
-//			cout << "Enter Age : ";
-//		}
-//	}
-//	
-//	
-//}
+
 
 
 void admin(int opt, Tree t, List<Flight>& fList) {
@@ -623,6 +637,7 @@ int main()
 
 	List<Flight> fList;
 	List<Customer> cList;
+	List<Passenger> pList;
 	Customer Jax = Customer("Jax", "test@gmail.com", "password", "9999 9999");
 	Customer Akid = Customer("Akid", "test1@gmail.com", "password", "8888 8888");
 	Customer A = Customer("A", "test2@gmail.com", "password", "7777 7777");
@@ -646,7 +661,7 @@ int main()
 		case 0:
 			break;
 		case 1:
-			user(-1,cList,fList);
+			user(-1,cList,fList, pList);
 			break;
 		case 2:
 			admin(-1, tList, fList);

@@ -1,3 +1,14 @@
 ﻿  DSA-Assignment.cpp
-C:\Users\jaxch\source\repos\DSA-Assignment\DSA-Assignment\DSA-Assignment.cpp(134,14): error C2065: 'booking': undeclared identifier
-C:\Users\jaxch\source\repos\DSA-Assignment\DSA-Assignment\DSA-Assignment.cpp(134,24): error C2059: syntax error: ')'
+  PriorityQueue.cpp
+E:\Akid\School\SEM 2.2\DSA\Assignment\DSA-Assignment\DSA-Assignment\PriorityQueue.cpp(5,84): error C2679: binary '=': no operator found which takes a right-hand operand of type 'List<Passenger>' (or there is no acceptable conversion)
+E:\Akid\School\SEM 2.2\DSA\Assignment\DSA-Assignment\DSA-Assignment\Booking.h(56,1): message : could be 'Booking &Booking::operator =(Booking &&)'
+E:\Akid\School\SEM 2.2\DSA\Assignment\DSA-Assignment\DSA-Assignment\Booking.h(56,1): message : or       'Booking &Booking::operator =(const Booking &)'
+E:\Akid\School\SEM 2.2\DSA\Assignment\DSA-Assignment\DSA-Assignment\PriorityQueue.cpp(5,84): message : while trying to match the argument list '(ItemType, List<Passenger>)'
+E:\Akid\School\SEM 2.2\DSA\Assignment\DSA-Assignment\DSA-Assignment\PriorityQueue.cpp(82,26): error C2039: 'getLength': is not a member of 'Booking'
+E:\Akid\School\SEM 2.2\DSA\Assignment\DSA-Assignment\DSA-Assignment\Booking.h(4): message : see declaration of 'Booking'
+E:\Akid\School\SEM 2.2\DSA\Assignment\DSA-Assignment\DSA-Assignment\PriorityQueue.cpp(83,23): error C2039: 'get': is not a member of 'Booking'
+E:\Akid\School\SEM 2.2\DSA\Assignment\DSA-Assignment\DSA-Assignment\Booking.h(4): message : see declaration of 'Booking'
+  Generating Code...
+E:\Akid\School\SEM 2.2\DSA\Assignment\DSA-Assignment\DSA-Assignment\List.h(110): warning C4715: 'List<Customer>::get': not all control paths return a value
+E:\Akid\School\SEM 2.2\DSA\Assignment\DSA-Assignment\DSA-Assignment\List.h(110): warning C4715: 'List<Flight>::get': not all control paths return a value
+E:\Akid\School\SEM 2.2\DSA\Assignment\DSA-Assignment\DSA-Assignment\List.h(110): warning C4715: 'List<Seat>::get': not all control paths return a value

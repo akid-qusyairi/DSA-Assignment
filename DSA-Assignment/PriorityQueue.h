@@ -3,9 +3,9 @@
 #include<string>
 #include<iostream>
 #include "List.h"
-#include "Passenger.h"
+#include "Booking.h"
 
-typedef List<Passenger> ItemType;
+typedef Booking ItemType;
 struct Node
 {
 	ItemType item;	// item
