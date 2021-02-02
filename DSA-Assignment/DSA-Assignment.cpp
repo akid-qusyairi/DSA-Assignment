@@ -87,7 +87,7 @@ void custMenu(int opt, List<Flight> flightList, int custIndex, List<Customer> cL
 			if (sClass == "First")
 			{
 				priority = 4;
-				for (int x = 1; passengers; x++)
+				for (int x = 1; x <= passengers; x++)
 				{
 					cout << "enter Name : ";
 					cin >> name;
@@ -122,7 +122,7 @@ void custMenu(int opt, List<Flight> flightList, int custIndex, List<Customer> cL
 			else if (sClass == "Business")
 			{
 				priority = 2;
-				for (int x = 1; passengers; x++)
+				for (int x = 1; x <= passengers; x++)
 				{
 					cout << "Enter Seat No. : ";
 					cin >> sNo;
@@ -154,7 +154,7 @@ void custMenu(int opt, List<Flight> flightList, int custIndex, List<Customer> cL
 			else
 			{
 				priority = 0;
-				for (int x = 1; passengers; x++)
+				for (int x = 1; x <= passengers; x++)
 				{
 					cout << "Enter Seat No. : ";
 					cin >> sNo;
@@ -246,7 +246,7 @@ void guestMenu(int opt, List<Flight> flightList, List<Passenger> pList) {
 	if (sClass == "First")
 	{
 		priority = 4;
-		for (int x = 1; passengers; x++)
+		for (int x = 1; x <= passengers; x++)
 		{
 			cout << "enter Name : ";
 			cin >> name;
@@ -281,7 +281,7 @@ void guestMenu(int opt, List<Flight> flightList, List<Passenger> pList) {
 	else if (sClass == "Business")
 	{
 		priority = 2;
-		for (int x = 1; passengers; x++)
+		for (int x = 1; x <= passengers; x++)
 		{
 			cout << "Enter Seat No. : ";
 			cin >> sNo;
@@ -313,7 +313,7 @@ void guestMenu(int opt, List<Flight> flightList, List<Passenger> pList) {
 	else
 	{
 		priority = 0;
-		for (int x = 1; passengers; x++)
+		for (int x = 1; x <= passengers; x++)
 		{
 			cout << "Enter Seat No. : ";
 			cin >> sNo;
