@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 // constructor
-Queue::Queue() { frontNode = NULL; backNode = NULL; maxPriority = List<Passenger>(); };
+Queue::Queue() { frontNode = NULL; backNode = NULL; maxPriority = Booking(); };
 
 Queue::~Queue() {};
 
@@ -79,10 +79,8 @@ void Queue::displayItems() {
 	}
 	while (!q.isEmpty()) {
 		q.dequeue(item, priority);
-		for (int i=0; i < item.getLength(); i++) {
-			Passenger p = item.get(i);
-			cout << p.getName() << "	";
-		}
+		List<Passenger> p = item.getList();
+		p.print();
 		enqueue(item, priority);
 	}
 	cout << endl;
