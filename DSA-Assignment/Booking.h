@@ -13,12 +13,13 @@ private:
 public:
 	Booking() {}
 
-	Booking(string Origin,string Dest,string Name, string Email, List<Passenger> P) {
+	Booking(string Origin,string Dest,string Name, string Email, List<Passenger> P,double tP) {
 		origin = Origin;
 		destination = Dest;
 		name = Name;
 		email = Email;
 		pList = P;
+		totalPrice = tP;
 	}
 
 	void setName(string n) { name = n; }
@@ -51,7 +52,12 @@ public:
 	}
 
 	void preview() {
-		cout << "Origin: " << origin << " | Destination: " << destination << " | Total Seats: " << pList.getLength() << endl;
+		cout << "Origin: " << origin << " | Destination: " << destination << " | Total Seats: " << pList.getLength() << " | Total Price: " << totalPrice<< endl;
+		cout << "Passengers" <<endl<< "================" << endl;
+		for (int i = 0; i < pList.getLength(); i++) {
+			Passenger p = pList.get(i);
+			p.print();
+		}
 	}
 };
 

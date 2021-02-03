@@ -87,103 +87,52 @@ void custMenu(int opt, List<Flight> flightList, int custIndex, List<Customer> cL
 			if (sClass == "First")
 			{
 				priority = 4;
-				for (int x = 1; passengers; x++)
-				{
-					cout << "enter Name : ";
-					cin >> name;
-					cout << "Enter Seat No. : ";
-					cin >> sNo;
-					cout << "Enter Age : ";
-					cin >> age;
-					if (age < 12 || age > 65)
-					{
-						priority += 2;
-					}
-					else
-					{
-						priority += 1;
-					}
-					
-					Seat s  = sList.get(sNo - 1);
-					s.setTaken(true);
-					sList.updateItem(sNo - 1, s);
-					Passenger p(name, age, priority,s);
-					pList.add(p);
-					if (highestPrio < priority)
-					{
-						highestPrio = priority;
-					}
-					else
-					{
-						break;
-					}
-				}
 			}
 			else if (sClass == "Business")
 			{
 				priority = 2;
-				for (int x = 1; passengers; x++)
-				{
-					cout << "Enter Seat No. : ";
-					cin >> sNo;
-					cout << "Enter Age : ";
-					if (age < 12 || age > 65)
-					{
-						priority += 2;
-					}
-					else
-					{
-						priority += 1;
-					}
-
-					Seat s = sList.get(sNo - 1);
-					s.setTaken(true);
-					sList.updateItem(sNo - 1, s);
-					Passenger p(name, age, priority, s);
-					pList.add(p);
-					if (highestPrio < priority)
-					{
-						highestPrio = priority;
-					}
-					else
-					{
-						break;
-					}
-				}
 			}
 			else
 			{
 				priority = 0;
-				for (int x = 1; passengers; x++)
+			}
+			double totalP = 0;
+			for (int x = 0; x<passengers; x++)
+			{
+				int curr_prior = priority;
+				cout << "Enter Name : ";
+				cin >> name;
+				cout << "Enter Seat No. : ";
+				cin >> sNo;
+				cout << "Enter Age : ";
+				cin >> age;
+				if (age < 12 || age > 65)
 				{
-					cout << "Enter Seat No. : ";
-					cin >> sNo;
-					cout << "Enter Age : ";
-					if (age < 12 || age > 65)
-					{
-						priority += 2;
-					}
-					else
-					{
-						priority += 1;
-					}
+					curr_prior += 2;
+				}
+				else
+				{
+					curr_prior += 1;
+				}
 
-					Seat s = sList.get(sNo - 1);
-					s.setTaken(true);
-					sList.updateItem(sNo - 1, s);
-					Passenger p(name, age, priority, s);
-					pList.add(p);
-					if (highestPrio < priority)
-					{
-						highestPrio = priority;
-					}
-					else
-					{
-						break;
-					}
+				Seat s = sList.get(sNo - 1);
+				s.setTaken(true);
+				totalP += s.getPrice();
+				sList.updateItem(sNo - 1, s);
+				Passenger p(name, age, curr_prior, s);
+				pList.add(p);
+				if (highestPrio < curr_prior)
+				{
+					highestPrio = curr_prior;
+				}
+				else
+				{
+					break;
 				}
 			}
-			Booking b(chosen.getOrigin(), chosen.getDest(), cList.get(custIndex).getName(), cList.get(custIndex).getEmail(), pList);
+			cout << "Contact Name: " << cList.get(custIndex).getName() << endl;
+			cout << "Contact Email: " << cList.get(custIndex).getEmail() << endl;
+			Booking b(chosen.getOrigin(), chosen.getDest(), cList.get(custIndex).getName(), cList.get(custIndex).getEmail(), pList, totalP);
 			Queue q = chosen.getQueue();
 			q.enqueue(b, highestPrio);
 			chosen.setQueue(q);
@@ -217,9 +166,9 @@ void guestMenu(int opt, List<Flight> flightList, List<Passenger> pList) {
 	int age;
 	int highestPrio = 0;
 	cout << "----------------- Guest Details --------------------" << endl;
-	cout << "Enter Name : " << endl;
+	cout << "Enter Name : ";
 	cin >> gName;
-	cout << "Enter Email : " << endl;
+	cout << "Enter Email : ";
 	cin >> email;
 	cout << "----------------- Flight List --------------------" << endl;
 	for (int i = 0; i < flightList.getLength(); i++) {
@@ -246,103 +195,48 @@ void guestMenu(int opt, List<Flight> flightList, List<Passenger> pList) {
 	if (sClass == "First")
 	{
 		priority = 4;
-		for (int x = 1; passengers; x++)
-		{
-			cout << "enter Name : ";
-			cin >> name;
-			cout << "Enter Seat No. : ";
-			cin >> sNo;
-			cout << "Enter Age : ";
-			cin >> age;
-			if (age < 12 || age > 65)
-			{
-				priority += 2;
-			}
-			else
-			{
-				priority += 1;
-			}
-
-			Seat s = sList.get(sNo - 1);
-			s.setTaken(true);
-			sList.updateItem(sNo - 1, s);
-			Passenger p(name, age, priority, s);
-			pList.add(p);
-			if (highestPrio < priority)
-			{
-				highestPrio = priority;
-			}
-			else
-			{
-				break;
-			}
-		}
 	}
 	else if (sClass == "Business")
 	{
 		priority = 2;
-		for (int x = 1; passengers; x++)
-		{
-			cout << "Enter Seat No. : ";
-			cin >> sNo;
-			cout << "Enter Age : ";
-			if (age < 12 || age > 65)
-			{
-				priority += 2;
-			}
-			else
-			{
-				priority += 1;
-			}
-
-			Seat s = sList.get(sNo - 1);
-			s.setTaken(true);
-			sList.updateItem(sNo - 1, s);
-			Passenger p(name, age, priority, s);
-			pList.add(p);
-			if (highestPrio < priority)
-			{
-				highestPrio = priority;
-			}
-			else
-			{
-				break;
-			}
-		}
 	}
 	else
 	{
 		priority = 0;
-		for (int x = 1; passengers; x++)
+	}
+	double totalP = 0;
+	for (int x = 0; x< passengers; x++)
+	{
+		int curr_prior = priority;
+		cout << "enter Name : ";
+		cin >> name;
+		cout << "Enter Seat No. : ";
+		cin >> sNo;
+		cout << "Enter Age : ";
+		cin >> age;
+		if (age < 12 || age > 65)
 		{
-			cout << "Enter Seat No. : ";
-			cin >> sNo;
-			cout << "Enter Age : ";
-			if (age < 12 || age > 65)
-			{
-				priority += 2;
-			}
-			else
-			{
-				priority += 1;
-			}
+			curr_prior += 2;
+		}
+		else
+		{
+			curr_prior += 1;
+		}
 
-			Seat s = sList.get(sNo - 1);
-			s.setTaken(true);
-			sList.updateItem(sNo - 1, s);
-			Passenger p(name, age, priority, s);
-			pList.add(p);
-			if (highestPrio < priority)
-			{
-				highestPrio = priority;
-			}
-			else
-			{
-				break;
-			}
+		Seat s = sList.get(sNo - 1);
+		s.setTaken(true);
+		totalP += s.getPrice();
+		sList.updateItem(sNo - 1, s);
+		Passenger p(name, age, curr_prior, s);
+		pList.add(p);
+		if (highestPrio < curr_prior)
+		{
+			highestPrio = curr_prior;
 		}
 	}
-	Booking b(chosen.getOrigin(), chosen.getDest(), name, email, pList);
+	cout << "Contact Name: " << name << endl;
+	cout << "Contact Email: " << email << endl;
+	Booking b(chosen.getOrigin(), chosen.getDest(), name, email, pList, totalP);
 	Queue q = chosen.getQueue();
 	q.enqueue(b, highestPrio);
 	chosen.setQueue(q);
