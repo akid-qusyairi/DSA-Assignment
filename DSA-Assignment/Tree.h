@@ -18,11 +18,8 @@ public:
 
     TreeNode* searchSibling(TreeNode* start, string target);
 
-    void insertsibling(string item);
-    void insertsibling(TreeNode*& t, string item);
-
-    void insertchild(string item);
-    void insertchild(TreeNode*& t, string item);
+    void insert(string item);
+    void insert(TreeNode*& t, string item);
 
     TreeNode* deleteNode(TreeNode*& child);
 

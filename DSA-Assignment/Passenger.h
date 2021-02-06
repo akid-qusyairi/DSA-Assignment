@@ -46,6 +46,5 @@ public:
 		cout << "Name: " << getName() << endl;
 		cout << "Age: " << getAge() << endl;
 		getSeat().print();
-		cout << "================" << endl;
 	}
 };

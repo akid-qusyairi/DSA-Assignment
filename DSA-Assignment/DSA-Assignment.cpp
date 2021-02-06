@@ -316,6 +316,7 @@ void admin(int opt, Tree t, List<Flight>& fList) {
 			cout << "[2] Delete Flight Paths" << endl;
 			cout << "[3] Create New Flights" << endl;
 			cout << "[4] Update Flight Status" << endl;
+			cout << "[5] View Flight" << endl;
 			cout << "[0] Exit" << endl;
 			cout << "----------------------------------------------" << endl;
 			cout << "Enter your option : ";
@@ -350,11 +351,11 @@ void admin(int opt, Tree t, List<Flight>& fList) {
 						cout << "Enter Destination Country: ";
 						cin >> destC;
 						if (Origin != NULL) {
-							t.insertchild(Origin->leftChild, destC);
+							t.insert(Origin->leftChild, destC);
 							cout << "Added Flight Path [" << originC << " -> " << destC << "]" << endl;
 						}
 						else {
-							t.insertsibling(root, originC);
+							t.insert(root, originC);
 							cout << "Added Flight Path [" << originC << " -> " << destC << "]" << endl;
 						}
 						cout << "----------------------------------------------" << endl;
@@ -499,6 +500,20 @@ void admin(int opt, Tree t, List<Flight>& fList) {
 				break;
 
 			}
+			case 5: {
+				cout << endl << "--------Displaying current flights------------" << endl;
+				fList.print();
+				cout << "----------------------------------------------" << endl;
+				int option;
+				cout << "Enter your option : ";
+				cin >> option;
+				if (option <= fList.getLength() && option >= 1) {
+					Flight f = fList.get(option - 1);
+					Queue q = f.getQueue();
+					q.displayItems();
+				}
+				break;
+			}
 			default:
 				cout << "---------------- Admin Menu ------------------" << endl;
 				cout << "[1] View Flight Paths" << endl;
@@ -518,17 +533,17 @@ void admin(int opt, Tree t, List<Flight>& fList) {
 int main()
 {
 	Tree tList;
-	tList.insertsibling("Singapore");
+	tList.insert("Singapore");
 	TreeNode* root = tList.getTop();
-	tList.insertchild(root->leftChild, "Japan");
-	tList.insertchild(root->leftChild, "Malaysia");
+	tList.insert(root->leftChild, "Japan");
+	tList.insert(root->leftChild, "Malaysia");
 	TreeNode* tree = tList.search(root, "Japan");
-	tList.insertchild(tree->leftChild, "Thailand");
+	tList.insert(tree->leftChild, "Thailand");
 	TreeNode* temp = tList.search(root, "Thailand");
-	tList.insertchild(root->leftChild, "USA");
-	tList.insertchild(root->leftChild, "Indonesia");
+	tList.insert(root->leftChild, "USA");
+	tList.insert(root->leftChild, "Indonesia");
 	TreeNode* bottom = tList.search(root, "Indonesia");
-	tList.insertchild(bottom->leftChild, "Vietnam");
+	tList.insert(bottom->leftChild, "Vietnam");
 
 	List<Flight> fList;
 	List<Customer> cList;
