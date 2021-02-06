@@ -12,23 +12,29 @@
 
 using namespace std;
 
-int logIn(List<Customer> cList) {
+int logIn(List<Customer>& cList)
+{
 	cout << "----------------------- Log In -------------------" << endl;
 	string email, password;
 	cout << "Enter email: " ;
 	cin >> email;
-	cout << "Enter password: ";
-	cin >> password;
 	for (int i=0; i < cList.getLength(); i++) {
 		Customer c = cList.get(i);
-		if (c.getEmail() == email && c.getPass() == password) {
-			return i;
-			break;
+		if (c.getEmail() == email) 
+		{
+
+			cout << "Enter password: ";
+			cin >> password;
+			if (c.getPass() == password)
+			{
+				return i;
+				break;
+			}
 		}
 	}
 	return -1;
 }
-void custMenu(int opt, List<Flight> flightList, int custIndex, List<Customer> cList, List<Passenger> pList) {
+void custMenu(int opt, List<Flight>& fList, int custIndex, List<Customer>& cList, List<Passenger> pList) {
 	while (opt != 0)
 	{
 		cout << "---------------- Customer Menu ---------------" << endl;
@@ -50,19 +56,14 @@ void custMenu(int opt, List<Flight> flightList, int custIndex, List<Customer> cL
 			break;
 		}
 		case 2: {
-			string sClass;
-			int sNo;
-			string name;
-			int option;
-			int passengers;
-			int priority;
-			int age;
+			string sClass, name;
+			int sNo, option, passengers, priority, age;
 			int highestPrio = 0;
 			cout << "----------------- Flight List --------------------" << endl;
 			List<Flight> bookingFlights;
 			int fOptions = 1;
-			for (int i = 0; i < flightList.getLength(); i++) {
-				Flight f = flightList.get(i);
+			for (int i = 0; i < fList.getLength(); i++) {
+				Flight f = fList.get(i);
 				if (f.getStatus() == "Scheduled") {
 					cout << "----------------------------------------------" << endl;
 					cout << "[Option " << fOptions << "]" << endl;
@@ -136,7 +137,7 @@ void custMenu(int opt, List<Flight> flightList, int custIndex, List<Customer> cL
 			Queue q = chosen.getQueue();
 			q.enqueue(b, highestPrio);
 			chosen.setQueue(q);
-			flightList.updateItem(option - 1, chosen);
+			fList.updateItem(option - 1, chosen);
 			Customer c = cList.get(custIndex);
 			Stack s = c.getStack();
 			s.push(b);
@@ -155,15 +156,8 @@ void custMenu(int opt, List<Flight> flightList, int custIndex, List<Customer> cL
 	}
 }
 void guestMenu(int opt, List<Flight> flightList, List<Passenger> pList) {
-	string sClass;
-	int sNo;
-	string name;
-	string gName;
-	string email;
-	int option;
-	int passengers;
-	int priority;
-	int age;
+	string sClass, name, gName, email;
+	int sNo, option, passengers, priority, age;
 	int highestPrio = 0;
 	cout << "----------------- Guest Details --------------------" << endl;
 	cout << "Enter Name : ";
@@ -243,7 +237,7 @@ void guestMenu(int opt, List<Flight> flightList, List<Passenger> pList) {
 	flightList.updateItem(option - 1, chosen);
 
 }
-void user(int opt, List<Customer> customerList, List<Flight> flightList, List<Passenger> pList)
+void user(int opt, List<Customer> cList, List<Flight> fList, List<Passenger> pList)
 {
 	while (opt != 0) {
 		cout << "---------------- User Menu -------------------" << endl;
@@ -259,8 +253,13 @@ void user(int opt, List<Customer> customerList, List<Flight> flightList, List<Pa
 		case 0:
 			break;
 		case 1: {
-			int index = logIn(customerList);
-			custMenu(-1, flightList, index, customerList, pList);
+			int index = logIn(cList);
+			if (index == -1)
+			{
+				cout << "Account does not exist" << endl;
+				break;
+			}
+			custMenu(-1, fList, index, cList, pList);
 			break;
 		}
 		case 2: {
@@ -276,11 +275,11 @@ void user(int opt, List<Customer> customerList, List<Flight> flightList, List<Pa
 			cout << "Enter Phone No. : ";
 			cin >> phoneno;
 			cout << "Enter Password : ";
-			cout << "--------------------------------------------------" << endl;
 			cin >> password;
-			for (int x = 0; x < customerList.getLength(); x++)
+			cout << "--------------------------------------------------" << endl;
+			for (int x = 0; x < cList.getLength(); x++)
 			{
-				Customer v = customerList.get(x);
+				Customer v = cList.get(x);
 				if (v.getEmail() == email)
 				{
 					cout << "An account already exist under this email." << endl;
@@ -289,16 +288,16 @@ void user(int opt, List<Customer> customerList, List<Flight> flightList, List<Pa
 				else
 				{
 					Customer c(name, email, phoneno, password);
-					customerList.add(c);
+					cList.add(c);
 					cout << "Account created successfully" << endl;
-					custMenu(-1, flightList, customerList.getLength()-1, customerList, pList);
+					custMenu(-1, fList, cList.getLength()-1, cList, pList);
 				}
 			}
 			break;
 			
 		}
 		case 3: {
-			guestMenu(-1, flightList, pList);
+			guestMenu(-1, fList, pList);
 			break;
 		}
 		}
