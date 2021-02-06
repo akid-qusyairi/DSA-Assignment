@@ -26,7 +26,10 @@ bool Stack::push(ItemType& item) {
 bool Stack::pop() {
 	if (!isEmpty()) {
 		StackNode* tmp = topNode;
-		topNode = topNode->next;
+		if (topNode->next != NULL)
+			topNode = topNode->next;
+		else
+			topNode = NULL;
 		tmp = NULL;
 		delete tmp;
 	}

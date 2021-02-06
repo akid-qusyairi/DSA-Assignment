@@ -77,10 +77,17 @@ void Queue::displayItems() {
 		dequeue(item,priority);
 		q.enqueue(item, priority);
 	}
+	int count = 0;
 	while (!q.isEmpty()) {
 		q.dequeue(item, priority);
+		count++;
+		cout << "============" << endl;
+		cout << "Booking " << count << endl;
 		List<Passenger> p = item.getList();
-		p.print();
+		for (int i = 0; i < p.getLength(); i++) {
+			Passenger pass = p.get(i);
+			pass.print();
+		}
 		enqueue(item, priority);
 	}
 	cout << endl;

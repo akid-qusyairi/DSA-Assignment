@@ -34,12 +34,12 @@ TreeNode* Tree::searchSibling(TreeNode* start, string target) {
 }
 
 
-void Tree::insertsibling(string item)
+void Tree::insert(string item)
 {
-    insertsibling(rootNode, item);
+    insert(rootNode, item);
 }
 
-void Tree::insertsibling(TreeNode*& t, string item)
+void Tree::insert(TreeNode*& t, string item)
 {
     if (t == NULL)
     {
@@ -50,30 +50,9 @@ void Tree::insertsibling(TreeNode*& t, string item)
         t = newNode;
     }
     else {
-        insertsibling(t->rightSibling, item);
+        insert(t->rightSibling, item);
     }
 }
-
-void Tree::insertchild(string item)
-{
-    insertchild(rootNode, item);
-}
-
-void Tree::insertchild(TreeNode*& t, string item)
-{
-    if (t == NULL)
-    {
-        TreeNode* newNode = new TreeNode;
-        newNode->item = item;
-        newNode->leftChild = NULL;
-        newNode->rightSibling = NULL;
-        t = newNode;
-    }
-    else
-        insertsibling(t->rightSibling, item); 	// insert in right subtree
-}
-
-
 
 TreeNode* Tree::deleteNode(TreeNode*& child)
 {
