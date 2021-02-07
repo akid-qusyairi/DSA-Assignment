@@ -1,5 +1,8 @@
 #include "Seat.h"
-
+//======================================//
+//      Done By: Chua Jing Yi, Jax      //
+//         StudentID: S10196708         //
+//======================================//
 Seat::Seat() {}
 
 Seat::Seat(int SeatNo, string SeatClass,double P,bool t)

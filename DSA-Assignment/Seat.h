@@ -1,6 +1,10 @@
 #pragma once
 #include <string>
 #include<iostream>
+//======================================//
+//      Done By: Chua Jing Yi, Jax      //
+//         StudentID: S10196708         //
+//======================================//
 using namespace std;
 class Seat
 {

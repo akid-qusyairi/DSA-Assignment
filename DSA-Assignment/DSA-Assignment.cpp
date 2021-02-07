@@ -14,6 +14,10 @@ using namespace std;
 
 int logIn(List<Customer>& cList)
 {
+	//======================================//
+	//      Done By: Chua Jing Yi, Jax      //
+	//         StudentID: S10196708         //
+	//======================================//
 	cout << "----------------------- Log In -------------------" << endl;
 	string email, password;
 	cout << "Enter email: " ;
@@ -35,6 +39,10 @@ int logIn(List<Customer>& cList)
 	return -1;
 }
 void custMenu(int opt, List<Flight>& fList, int custIndex, List<Customer>& cList, List<Passenger> pList) {
+	//======================================//
+	//    Done By: Muhamad Akid Qusyairi    //
+	//         StudentID: S10194941         //
+	//======================================//
 	while (opt != 0)
 	{
 		cout << "---------------- Customer Menu ---------------" << endl;
@@ -156,6 +164,10 @@ void custMenu(int opt, List<Flight>& fList, int custIndex, List<Customer>& cList
 	}
 }
 void guestMenu(int opt, List<Flight> flightList, List<Passenger> pList) {
+	//======================================//
+	//    Done By: Muhamad Akid Qusyairi    //
+	//         StudentID: S10194941         //
+	//======================================//
 	string sClass, name, gName, email;
 	int sNo, option, passengers, priority, age;
 	int highestPrio = 0;
@@ -239,6 +251,10 @@ void guestMenu(int opt, List<Flight> flightList, List<Passenger> pList) {
 }
 void user(int opt, List<Customer> cList, List<Flight> fList, List<Passenger> pList)
 {
+	//======================================//
+	//    Done By: Muhamad Akid Qusyairi    //
+	//         StudentID: S10194941         //
+	//======================================//
 	while (opt != 0) {
 		cout << "---------------- User Menu -------------------" << endl;
 		cout << "[1] Login" << endl;
@@ -307,6 +323,10 @@ void user(int opt, List<Customer> cList, List<Flight> fList, List<Passenger> pLi
 
 
 void admin(int opt, Tree t, List<Flight>& fList) {
+	//======================================//
+	//      Done By: Chua Jing Yi, Jax      //
+	//         StudentID: S10196708         //
+	//======================================//
 	{
 		while (opt != 0) {
 			cout << "---------------- Admin Menu ------------------" << endl;
@@ -530,6 +550,10 @@ void admin(int opt, Tree t, List<Flight>& fList) {
 
 int main()
 {
+	//======================================//
+	//      Done By: Chua Jing Yi, Jax      //
+	//         StudentID: S10196708         //
+	//======================================//
 	Tree tList;
 	tList.insert("Singapore");
 	TreeNode* root = tList.getTop();

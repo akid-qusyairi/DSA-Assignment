@@ -3,7 +3,10 @@
 #include <iostream>
 #include "Stack.h"
 using namespace std;
-
+//======================================//
+//      Done By: Chua Jing Yi, Jax      //
+//         StudentID: S10196708         //
+//======================================//
 class Customer
 {
 private:

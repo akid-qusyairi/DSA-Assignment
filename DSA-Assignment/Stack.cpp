@@ -1,5 +1,8 @@
 #include "Stack.h"
-
+//======================================//
+//      Done By: Chua Jing Yi, Jax      //
+//         StudentID: S10196708         //
+//======================================//
 Stack::Stack() { topNode = NULL; }
 
 Stack::~Stack()

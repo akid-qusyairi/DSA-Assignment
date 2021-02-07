@@ -1,6 +1,11 @@
 #include "PriorityQueue.h"
 #include <string>
 using namespace std;
+//======================================//
+//    Done By: Muhamad Akid Qusyairi    //
+//         StudentID: S10194941         //
+//======================================//
+
 // constructor
 Queue::Queue() { frontNode = NULL; backNode = NULL; maxPriority = Booking(); };
 
