@@ -7,13 +7,17 @@ using namespace std;
 //         StudentID: S10196708         //
 //======================================//
 
+
+//Constructor
 Tree::Tree(){ rootNode = NULL; }    
 
+//Helper function to call search
 TreeNode* Tree::search(string target)
 {
     return search(rootNode, target);
 }
 
+//Searches the tree at start node for the string target, if found, returns the node.
 TreeNode* Tree::search(TreeNode* start, string target) {
     if (start == NULL)
         return NULL;
@@ -26,6 +30,7 @@ TreeNode* Tree::search(TreeNode* start, string target) {
     return NULL;
 }
 
+//Searches the right siblings of the tree for the target, returns node if found.
 TreeNode* Tree::searchSibling(TreeNode* start, string target) {
     if (start == NULL)
         return NULL;
@@ -36,12 +41,13 @@ TreeNode* Tree::searchSibling(TreeNode* start, string target) {
     return NULL;
 }
 
-
+//Helper function  to insert
 void Tree::insert(string item)
 {
     insert(rootNode, item);
 }
 
+//insert item at the node that is inputted recursively
 void Tree::insert(TreeNode*& t, string item)
 {
     if (t == NULL)
@@ -57,6 +63,7 @@ void Tree::insert(TreeNode*& t, string item)
     }
 }
 
+//delete the node and its children recursively
 TreeNode* Tree::deleteNode(TreeNode*& child)
 {
     TreeNode* newNode = NULL;
@@ -70,13 +77,18 @@ TreeNode* Tree::deleteNode(TreeNode*& child)
     return newNode;
 }
 
+//returns the rootNode
 TreeNode* Tree::getTop() { return rootNode; }
+
+//Check if rootNode is empty
 bool Tree::isEmpty() { return rootNode == NULL; }
 
+//Helper function to call traversetree()
 void Tree::traverseTree() {
     traverseTree(rootNode);
 }
 
+//Prints out the tree by parent node and then children nodes
 void Tree::traverseTree(TreeNode* root)
 {
     if (root == NULL)

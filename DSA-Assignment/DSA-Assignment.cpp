@@ -12,6 +12,7 @@
 
 using namespace std;
 
+//Ask the user for input, checks according to the list and returns the index in order to reference and update the object
 int logIn(List<Customer>& cList)
 {
 	//======================================//
@@ -93,6 +94,7 @@ void custMenu(int opt, List<Flight>& fList, int custIndex, List<Customer>& cList
 			cout << "Enter Seat Class (First, Business, Economy) : ";
 			cin >> sClass;
 			List<Seat> sList = chosen.getSList();
+			//set the class priority
 			if (sClass == "First")
 			{
 				priority = 4;
@@ -106,6 +108,7 @@ void custMenu(int opt, List<Flight>& fList, int custIndex, List<Customer>& cList
 				priority = 0;
 			}
 			double totalP = 0;
+			//loop to ask for input and compare the highest priority
 			for (int x = 0; x<passengers; x++)
 			{
 				int curr_prior = priority;
@@ -198,6 +201,7 @@ void guestMenu(int opt, List<Flight> flightList, List<Passenger> pList) {
 	cout << "Enter Seat Class (First, Business, Economy) : ";
 	cin >> sClass;
 	List<Seat> sList = chosen.getSList();
+	//set class priority
 	if (sClass == "First")
 	{
 		priority = 4;
@@ -211,6 +215,7 @@ void guestMenu(int opt, List<Flight> flightList, List<Passenger> pList) {
 		priority = 0;
 	}
 	double totalP = 0;
+	//loop to ask for input and compare the highest priority
 	for (int x = 0; x< passengers; x++)
 	{
 		int curr_prior = priority;
@@ -242,7 +247,7 @@ void guestMenu(int opt, List<Flight> flightList, List<Passenger> pList) {
 	}
 	cout << "Contact Name: " << name << endl;
 	cout << "Contact Email: " << email << endl;
-	Booking b(chosen.getOrigin(), chosen.getDest(), name, email, pList, totalP);
+	Booking b(chosen.getOrigin(), chosen.getDest(), gName, email, pList, totalP);
 	Queue q = chosen.getQueue();
 	q.enqueue(b, highestPrio);
 	chosen.setQueue(q);
@@ -366,17 +371,17 @@ void admin(int opt, Tree t, List<Flight>& fList) {
 						cout << "----------------------------------------------" << endl;
 						cout << "Enter Origin Country: ";
 						cin >> originC;
-						TreeNode* root = t.getTop();
+						//Search for the origin Node
 						TreeNode* Origin = t.search(originC);
 						cout << "Enter Destination Country: ";
 						cin >> destC;
 						if (Origin != NULL) {
+							//insert the destination as a child of the origin
 							t.insert(Origin->leftChild, destC);
 							cout << "Added Flight Path [" << originC << " -> " << destC << "]" << endl;
 						}
 						else {
-							t.insert(root, originC);
-							cout << "Added Flight Path [" << originC << " -> " << destC << "]" << endl;
+							cout << "No connecting flights. Please, try again." << endl;
 						}
 						cout << "----------------------------------------------" << endl;
 						opt1 = 2;
@@ -408,7 +413,6 @@ void admin(int opt, Tree t, List<Flight>& fList) {
 				cout << "----------------------------------------------" << endl;
 				cout << "Enter Origin Country: ";
 				cin >> originC;
-				TreeNode* root = t.getTop();
 				TreeNode* Origin = t.search(originC);
 				cout << "Enter Destination Country: ";
 				cin >> destC;
@@ -420,7 +424,9 @@ void admin(int opt, Tree t, List<Flight>& fList) {
 					if (Origin != NULL) {
 						TreeNode* toDelete = t.searchSibling(Origin->leftChild, destC);
 						if (toDelete != NULL) {
+							//right sibling is returned
 							TreeNode* child = t.deleteNode(toDelete);
+							//set the parent->leftChild to point to the right sibling
 							Origin->leftChild = child;
 						}
 						cout << "Deleted Flight Path [" << originC << " -> " << destC << "]" << endl;
@@ -463,16 +469,19 @@ void admin(int opt, Tree t, List<Flight>& fList) {
 						cout << "Enter Price of Economy Class Seats: ";
 						cin >> Ep;
 						List<Seat> seat;
+						//loop for first class
 						for (int i = 0; i < F; i++) {
 							Seat s = Seat(i + 1, "First", Fp, false);
 							seat.add(s);
 						}
 						int len = seat.getLength();
+						//loop for business class
 						for (int i = len; i < len + B; i++) {
 							Seat s = Seat(i + 1, "Business", Bp, false);
 							seat.add(s);
 						}
 						len = seat.getLength();
+						//loop for economy class
 						for (int i = len; i < len + E; i++) {
 							Seat s = Seat(i + 1, "Economy", Ep, false);
 							seat.add(s);
@@ -556,6 +565,8 @@ int main()
 	//      Done By: Chua Jing Yi, Jax      //
 	//         StudentID: S10196708         //
 	//======================================//
+
+	//initialise tree
 	Tree tList;
 	tList.insert("Singapore");
 	TreeNode* root = tList.getTop();
@@ -569,6 +580,7 @@ int main()
 	TreeNode* bottom = tList.search(root, "Indonesia");
 	tList.insert(bottom->leftChild, "Vietnam");
 
+	//initialise CustomerList
 	List<Flight> fList;
 	List<Customer> cList;
 	List<Passenger> pList;

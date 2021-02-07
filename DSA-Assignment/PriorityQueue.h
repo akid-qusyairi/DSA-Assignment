@@ -31,7 +31,7 @@ public:
 
 	~Queue();
 
-	// enqueue (add) item at the back of queue
+	// enqueue (add) item based on the priority parameter into the queue
 	bool enqueue(ItemType item,int priority);
 
 	// dequeue (remove) item from front of queue

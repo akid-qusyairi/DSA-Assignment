@@ -26,22 +26,27 @@ public:
 		sList = s;
 		status = Status;
 	}
-
+	//set origin to input, returns origin
 	void setOrigin(string O) { origin = O; }
 	string getOrigin() { return origin; }
 
-	void setDest(string O) { origin = O; }
-	string getDest() { return origin; }
+	//set dest to input, returns dest
+	void setDest(string D) { dest = D; }
+	string getDest() { return dest; }
 
+	//set status to input, returns status
 	void setStatus(string s) { status = s; }
 	string getStatus() { return status; }
 	
+	//set Queue to input, returns Queue
 	void setQueue(Queue b) { bList = b; }
 	Queue getQueue() { return bList; }
-
+	
+	//set sList to input, returns sList
 	void setSList(List<Seat> s) { sList = s; }
 	List<Seat> getSList() { return sList; }
 
+	//display the seats
 	void preview() {
 		cout << "---------------------Seats---------------------" << endl;
 		int count = 0;
@@ -74,6 +79,7 @@ public:
 		
 	}
 
+	//display flight details
 	void print() {
 		cout << "Origin: " << origin << " | Destination: " << dest << " | Status: " << status << endl;
 		double Fp, Bp, Ep;

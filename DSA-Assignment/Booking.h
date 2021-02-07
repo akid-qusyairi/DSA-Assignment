@@ -15,6 +15,7 @@ private:
 	List<Passenger> pList;
 	double totalPrice;
 public:
+	//constructor
 	Booking() {}
 
 	Booking(string Origin,string Dest,string Name, string Email, List<Passenger> P,double tP) {
@@ -26,24 +27,31 @@ public:
 		totalPrice = tP;
 	}
 
+	//set name to input, returns name
 	void setName(string n) { name = n; }
 	string getName() { return name; }
 
+	//set email to input, returns email
 	void setEmail(string e) { email = e; }
 	string getEmail() { return email; }
 
+	//set origin to input, returns origin
 	void setOrigin(string o) { origin = o; }
 	string getOrigin() { return origin; }
 
+	//set destination to input, returns destination
 	void setDestination(string d) { destination = d; }
 	string getDestination() { return destination; }
 
+	//set pList to input, returns pList
 	void setList(List<Passenger> p) {
 		pList = p;
 	}
 	List<Passenger> getList() {
 		return pList;
 	}
+
+	//set totalPrice to input, returns totalPrice
 	void setPrice(double d) { totalPrice = d; }
 	double getPrice() { return totalPrice; }
 
