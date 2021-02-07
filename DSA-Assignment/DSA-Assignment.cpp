@@ -39,6 +39,7 @@ int logIn(List<Customer>& cList)
 	}
 	return -1;
 }
+//contains register user features
 void custMenu(int opt, List<Flight>& fList, int custIndex, List<Customer>& cList, List<Passenger> pList) {
 	//======================================//
 	//    Done By: Muhamad Akid Qusyairi    //
@@ -58,6 +59,10 @@ void custMenu(int opt, List<Flight>& fList, int custIndex, List<Customer>& cList
 		case 0:
 			break;
 		case 1: {
+			//======================================//
+			//      Done By: Chua Jing Yi, Jax      //
+			//         StudentID: S10196708         //
+			//======================================//
 			cout << "---------------- Past Bookings ---------------" << endl;
 			Customer c = cList.get(custIndex);
 			Stack pastB = c.getStack();
@@ -149,6 +154,8 @@ void custMenu(int opt, List<Flight>& fList, int custIndex, List<Customer>& cList
 			q.enqueue(b, highestPrio);
 			chosen.setQueue(q);
 			fList.updateItem(option - 1, chosen);
+
+			//updating previously booked flights
 			Customer c = cList.get(custIndex);
 			Stack s = c.getStack();
 			s.push(b);
@@ -166,6 +173,7 @@ void custMenu(int opt, List<Flight>& fList, int custIndex, List<Customer>& cList
 		}
 	}
 }
+//contains booking
 void guestMenu(int opt, List<Flight> flightList, List<Passenger> pList) {
 	//======================================//
 	//    Done By: Muhamad Akid Qusyairi    //
@@ -328,7 +336,7 @@ void user(int opt, List<Customer> cList, List<Flight> fList, List<Passenger> pLi
 }
 
 
-
+// contains all admin features
 void admin(int opt, Tree t, List<Flight>& fList) {
 	//======================================//
 	//      Done By: Chua Jing Yi, Jax      //
