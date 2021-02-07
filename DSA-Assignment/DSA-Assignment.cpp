@@ -272,7 +272,9 @@ void user(int opt, List<Customer> cList, List<Flight> fList, List<Passenger> pLi
 			int index = logIn(cList);
 			if (index == -1)
 			{
+				cout << "----------------------------------------------" << endl;
 				cout << "Account does not exist" << endl;
+				cout << "----------------------------------------------" << endl;
 				break;
 			}
 			custMenu(-1, fList, index, cList, pList);
@@ -383,7 +385,7 @@ void admin(int opt, Tree t, List<Flight>& fList) {
 					case 2: {
 						opt1 = 2;
 						break;
-					}
+					}	
 					default: {
 						cout << "---------------- Add New Paths? --------------" << endl;
 						cout << "[1] Yes" << endl;
